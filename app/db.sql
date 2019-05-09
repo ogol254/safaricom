@@ -22,3 +22,12 @@ CREATE TABLE IF NOT EXISTS films (
     archive numeric (1) DEFAULT 0,
     created_on timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
  );
+
+ CREATE TABLE IF NOT EXISTS comentrate (
+    comment_id serial PRIMARY KEY NOT NULL,
+    movie_id numeric NOT NULL,
+    created_by character varying(20) NOT NULL,
+    comment character varying(1000) NOT NULL,
+    rating numeric NOT NULL,
+    date_created timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
+);

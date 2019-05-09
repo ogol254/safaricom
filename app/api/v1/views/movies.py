@@ -4,12 +4,14 @@ import string
 
 # third party packages
 from flask_restplus import Resource
+from statistics import mean
 from flask import jsonify, make_response, request, g
 from werkzeug.security import check_password_hash
 from werkzeug.exceptions import BadRequest, NotFound, Unauthorized, Forbidden
 
 # local imports
 from ..models.movies_models import MoviesModels
+from ..models.comment_models import CommentModel
 from ..utils.serializers import MovieDTO
 from ..utils.auth_validation import auth_required
 
@@ -18,6 +20,7 @@ new_movie = MovieDTO().n_movie
 new_movie_resp = MovieDTO().n_movie_resp
 all_movies = MovieDTO().all_movie
 all_movies_resp = MovieDTO.all_movies_resp
+comment_resp = MovieDTO.n_comment_ns
 
 
 def _validate_movie(record):
@@ -118,9 +121,13 @@ class GetSpecifiedMovie(Resource):
             raise NotFound("No such film in our records")
 
         film = MoviesModels().get_one(film_id)
+        comments = CommentModel().get_specif_record_comments(film_id)
+        if not comments:
+            comments = "No comments exists"
         films = {
             "message": "film",
-            "movies": film
+            "movies": film, 
+            "comment":comments
         }
 
         return films, 200

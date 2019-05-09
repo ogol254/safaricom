@@ -47,7 +47,29 @@ class MovieDTO(object):
         'rating': fields.Integer(required=True, description="rating"),
         'created_on': fields.String(required=True, description="created_on")
     })
+    n_comment_ns = api.model('Response for fetching a comment', {
+        'comment_id': fields.Integer(required=True, description="comment id number"),
+        'comment': fields.String(required=True, description="comment id number"),
+        'rating': fields.Integer(required=True, description="rating "),
+        'created_by': fields.String(required=True, description="who created the comemnt"),
+        'created_on': fields.String(required=True, description="date")
+    })
     all_movies_resp = api.model('Reesponse for adding all movies', {
         'message': fields.String(required=True, description="success message"),
-        'movies': fields.List(fields.Nested(all_movie), required=True, description="list of all the questions")
+        'movies': fields.List(fields.Nested(all_movie), required=True, description="list of all the questions"),
+        # 'comment': fields.String(required=True, description="created_on")
+        'comment': fields.List(fields.Nested(n_comment_ns), required=True, description="list of all the questions")
+    })
+    
+
+class CommentDTO(object):
+    """docstring for CommentDTO"""
+    api = Namespace('comments', description='comemnts Proceses')
+    n_comment = api.model('new comment post  request', {
+        'comment': fields.String(required=True, description="description of the comment"),
+        'rating': fields.Integer(required=True, description="rating")
+    })
+    n_comment_resp = api.model('Response for adding a new record', {
+        'message': fields.String(required=True, description="success message"),
+        'comment_id': fields.Integer(required=True, description="comment id number")
     })

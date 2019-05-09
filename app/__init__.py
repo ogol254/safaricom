@@ -59,6 +59,7 @@ def unauthorized(error):
 
 def create_app(config_name='development'):
     app = Flask(__name__, instance_relative_config=True)
+    app.config['JSON_SORT_KEYS'] = False
     app.url_map.strict_slashes = False
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
