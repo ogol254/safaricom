@@ -18,10 +18,10 @@ from .base_tests import BaseTest
 class TestAuth(BaseTest):
     """This class collects all the test cases for the users"""
 
-    # def test_user_signup(self):
-    #     """Test that a user can signup using a POST request"""
-    #     reg = self.register()
-    #     self.assertEqual(reg.status_code, 201)
+    def test_user_signup(self):
+        """Test that a user can signup using a POST request"""
+        reg = self.register()
+        self.assertEqual(reg.status_code, 201)
 
     def test_user_login(self):
         """Test that a user can login using a POST request"""
