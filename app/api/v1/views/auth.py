@@ -38,7 +38,7 @@ class AuthLogin(Resource):
     docu_string = "This endpoint accepts POST requests to allow a registered user to log in."
 
     @api.doc(docu_string)
-    @api.marshal_with(_user_resp, code=200)
+    # @api.marshal_with(_user_resp, code=200)
     @api.expect(login_user, validate=True)
     def post(self):
         """This endpoint allows an unregistered user to sign up."""
