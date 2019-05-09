@@ -35,7 +35,7 @@ def _validate_movie(record):
 class Movies(Resource):
     """This class collects the methods for the movies method"""
 
-    docu_string = "This endpoint accepts POST requests to report an record"
+    docu_string = "This endpoint accepts POST requests to post a movie"
 
     @api.doc(docu_string)
     @api.expect(new_movie, validate=True)
@@ -132,7 +132,7 @@ class GetSpecifiedMovie(Resource):
 
         return films, 200
 
-    docu_string = "This endpoint allows to edit a specific movie"
+    docu_string = "This endpoint allows a PUT request to edit a specific movie"
     @api.marshal_with(new_movie_resp, code=201)
     def put(self, film_id):
         if MoviesModels().check_exists("films", "film_id", film_id) == False:
@@ -157,7 +157,7 @@ class GetSpecifiedMovie(Resource):
 
         return resp, 200
 
-    docu_string = "This endpoint allows to soft delete a specific movie"
+    docu_string = "This endpoint allows DELETE request to soft delete a specific movie"
     @api.marshal_with(new_movie_resp, code=201)
     @auth_required
     def delete(self, film_id):
