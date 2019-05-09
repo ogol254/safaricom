@@ -23,7 +23,7 @@ new_comment_resp = CommentDTO().n_comment_resp
 class Comments(Resource):
     """This class collects the methods for the auth/signin method"""
 
-    docu_string = "This endpoint accepts POST requests to report an comment"
+    docu_string = "This endpoint accepts POST requests to comment"
 
     @api.doc(docu_string)
     @api.expect(new_comment, validate=True)
@@ -66,9 +66,10 @@ class Comments(Resource):
 class GetSpecificComment(Resource):
     """docstring for GetSpecifiedcomment"""
 
+    docu_string = "This endpoint edits a comment to a question"
     @api.marshal_with(new_comment_resp, code=200)
     @auth_required
-    def put(self, record_id, comment_id):
+    def put(self, movie_id, comment_id):
         if CommentModel().check_exists("comentrate", "comment_id", comment_id) == False:
             raise NotFound("No such comment in our comments")
 

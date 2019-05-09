@@ -36,7 +36,6 @@ class AuthLogin(Resource):
     """This class collects the methods for the auth/signin method"""
 
     docu_string = "This endpoint accepts POST requests to allow a registered user to log in."
-
     @api.doc(docu_string)
     # @api.marshal_with(_user_resp, code=200)
     @api.expect(login_user, validate=True)
@@ -85,6 +84,7 @@ class AuthLogin(Resource):
 class AuthLogout(Resource):
     """This class collects the methods for the  endpoint"""
 
+    docu_string = "This endpoint validates a token"
     def post(self):
         """This endpoint allows a registered user to logout."""
         auth_header = request.headers.get('Authorization')
@@ -106,8 +106,8 @@ class AuthLogout(Resource):
 @api.route('/validate')
 class AuthValidate(Resource):
     """This class collects the methods for the questions endpoint"""
+    
     docu_string = "This endpoint validates a token"
-
     @api.doc(docu_string)
     @api.marshal_with(_validate_user_resp, code=200)
     @auth_required

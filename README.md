@@ -106,3 +106,5 @@ GET | /int:movie_id | Get a single movie
 PUT | /int:movie_id | Edit a single movie
 DELETE | /int:movie_id | Delete a single movie
 GET | /int:movie_id/watch | watch a movie
+POST | /int:movie_id/comment | Add a comment to a movie
+PUT | /int:movie_id/comment/int:comment_id | Edit a comment to a movie
